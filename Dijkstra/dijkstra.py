@@ -45,20 +45,23 @@ def route(museums: list, graph: dict):
     time = 0
     route = [1]
     for i in museums:
-        distances = dijkstra(start = current_stop, graph = graph)
+        distances = dijkstra(start=current_stop, graph=graph)
         time += distances[i]["dist"]
         bus_stop = i
-        subroute = []
-        while True:
-            if bus_stop == current_stop:
-                break
-            else:
-                subroute.append(bus_stop)
-                bus_stop = distances[bus_stop]["previous"]
-        route = route + subroute[::-1]
+        subroute = [bus_stop]
+        while bus_stop != current_stop:
+            bus_stop = distances[bus_stop]["previous"]
+            subroute.append(bus_stop)
+        route.extend(subroute[::-1][1:])
         current_stop = i
-    
-    time += dijkstra(start = current_stop, graph = graph)[1]["dist"]
-    route.append(1)
+
+    distances = dijkstra(start=current_stop, graph=graph)
+    time += distances[1]["dist"]
+    bus_stop = 1
+    subroute = [bus_stop]
+    while bus_stop != current_stop:
+        bus_stop = distances[bus_stop]["previous"]
+        subroute.append(bus_stop)
+    route.extend(subroute[::-1][1:])
 
     return time, route
