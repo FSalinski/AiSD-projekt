@@ -4,6 +4,8 @@ w nim najtańszej ścieżki
 '''
 
 from Dijkstra.dijkstra import route
+from bin.generate_graphs import generate_graph
+import random as rnd
 
 
 def main():
@@ -83,13 +85,38 @@ def main():
             print("Trasa:", ' -> '.join([str(x) for x in best_route[1]]))
 
         elif option == 2:
-            pass
+            n = rnd.randint(3, 12)
+            m = rnd.randint(n, n * (n - 1) // 2)
+            min_weight = 1
+            max_weight = 10
+            graph = generate_graph(n, m, min_weight, max_weight)
+            print("Wylosowany graf:")
+            print(graph)
+
+            museums = rnd.sample(range(1, n + 1), rnd.randint(1, n))
+            print("Muzea:", museums)
+
+            best_route = route(museums, graph)
+            print("Najlepsza trasa:")
+            print("Czas przejazdu:", best_route[0])
+            print("Trasa:", ' -> '.join([str(x) for x in best_route[1]]))
 
         elif option == 3:
-            pass
+            graph = {1: {2: 4, 4: 1}, 2: {1: 4, 5: 1, 3: 2}, 4: {1: 1, 5: 1}, 5: {4: 1, 2: 1, 3: 10}, 3: {2: 2, 5: 10}}
+            museums = [2, 3, 4]
+            
+            print("Przykładowy graf:")
+            print(graph)
+            print("Muzea:", museums)
+
+            best_route = route(museums, graph)
+            print("Najlepsza trasa:")
+            print("Czas przejazdu:", best_route[0])
+            print("Trasa:", ' -> '.join([str(x) for x in best_route[1]]))
 
         elif option == 4:
-            pass
+            print("Koniec programu")
+            break
 
 
 if __name__ == '__main__':
