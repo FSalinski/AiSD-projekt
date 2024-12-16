@@ -1,6 +1,6 @@
 import random as rnd
 
-def generate_graph(n, m, min_weight, max_weight):
+def generate_graph(n: int, m: int, min_weight: int, max_weight: int):
     if m < n - 1 or m > n * (n - 1) / 2:
         raise ValueError("Invalid number of edges")
     if min_weight > max_weight:
