@@ -5,7 +5,7 @@ def dijkstra(start: int, graph: dict):
 
     # Inicjalizacja tablicy odległości
     distances = dict()
-    for i in range(n):
+    for i in range(1, n + 1):
         if i == start:
             distances[i] = {"dist" : 0,
                             "previous" : i}
@@ -41,9 +41,9 @@ def route(museums: list, graph: dict):
 
     museums.sort()
 
-    current_stop = 0
+    current_stop = 1
     time = 0
-    route = [0]
+    route = [1]
     for i in museums:
         distances = dijkstra(start = current_stop, graph = graph)
         time += distances[i]["dist"]
@@ -58,7 +58,7 @@ def route(museums: list, graph: dict):
         route = route + subroute[::-1]
         current_stop = i
     
-    time += dijkstra(start = current_stop, graph = graph)[0]["dist"]
-    route.append(0)
+    time += dijkstra(start = current_stop, graph = graph)[1]["dist"]
+    route.append(1)
 
     return time, route

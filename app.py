@@ -33,7 +33,7 @@ def main():
                 
                 graph = {}
                 i = 0
-                print("Wierzchołki są numerowane od 0 do", n - 1)
+                print("Wierzchołki są numerowane od 1 do", n)
                 while i < m:
                     start = int(input(f"Podaj początek krawędzi {i + 1}: "))
                     end = int(input(f"Podaj koniec krawędzi {i + 1}: "))
@@ -43,7 +43,7 @@ def main():
                         print("Początek i koniec krawędzi nie mogą być takie same")
                         continue
 
-                    if start < 0 or start >= n or end < 0 or end >= n:
+                    if start < 1 or start > n or end < 1 or end > n:
                         print("Niepoprawny wierzchołek")
                         continue
 
@@ -66,10 +66,10 @@ def main():
             i = 0
             museums = []
             while i < n:
-                print("Czy wierzchołek", i, "jest muzeum? (1/0)")
+                print("Czy wierzchołek", i + 1, "jest muzeum? (1/0)")
                 is_museum = int(input())
                 if is_museum == 1:
-                    museums.append(i)
+                    museums.append(i + 1)
                 if is_museum not in [0, 1]:
                     print("Niepoprawna odpowiedź")
                     continue
