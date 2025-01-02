@@ -76,8 +76,15 @@ def main():
                     print("Niepoprawna odpowiedź")
                     continue
                 i += 1
+
+            # Sort graph keys
+            graph = dict(sorted(graph.items()))
+            for key in graph:
+                graph[key] = dict(sorted(graph[key].items()))
+
             print("Wybrany graf:")
             print(graph)
+            print("Muzea:", museums)
 
             best_route = route(museums, graph)
             print("Najlepsza trasa:")
@@ -90,10 +97,17 @@ def main():
             min_weight = 1
             max_weight = 10
             graph = generate_graph(n, m, min_weight, max_weight)
+
+             # Sort graph keys
+            graph = dict(sorted(graph.items()))
+            for key in graph:
+                graph[key] = dict(sorted(graph[key].items()))
+            
             print("Wylosowany graf:")
             print(graph)
 
             museums = rnd.sample(range(1, n + 1), rnd.randint(1, n))
+            museums.sort()
             print("Muzea:", museums)
 
             best_route = route(museums, graph)
@@ -104,6 +118,11 @@ def main():
         elif option == 3:
             graph = {1: {2: 4, 4: 1}, 2: {1: 4, 5: 1, 3: 2}, 4: {1: 1, 5: 1}, 5: {4: 1, 2: 1, 3: 10}, 3: {2: 2, 5: 10}}
             museums = [2, 3, 4]
+
+            # Sort graph keys
+            graph = dict(sorted(graph.items()))
+            for key in graph:
+                graph[key] = dict(sorted(graph[key].items()))
             
             print("Przykładowy graf:")
             print(graph)

@@ -20,5 +20,6 @@ def main():
 
     print(route([1, 3, 4, 8, 11, 16], graph))
 
+
 if __name__ == '__main__':
     main()

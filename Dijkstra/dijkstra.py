@@ -40,7 +40,8 @@ def dijkstra(start: int, graph: dict):
 def route(museums: list, graph: dict):
 
     museums.sort()
-    museums.append(1)
+    if museums != [1]:
+        museums.append(1)
 
     current_stop = 1
     time = 0
