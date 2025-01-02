@@ -40,6 +40,7 @@ def dijkstra(start: int, graph: dict):
 def route(museums: list, graph: dict):
 
     museums.sort()
+    museums.append(1)
 
     current_stop = 1
     time = 0
@@ -54,14 +55,5 @@ def route(museums: list, graph: dict):
             subroute.append(bus_stop)
         route.extend(subroute[::-1][1:])
         current_stop = i
-
-    distances = dijkstra(start=current_stop, graph=graph)
-    time += distances[1]["dist"]
-    bus_stop = 1
-    subroute = [bus_stop]
-    while bus_stop != current_stop:
-        bus_stop = distances[bus_stop]["previous"]
-        subroute.append(bus_stop)
-    route.extend(subroute[::-1][1:])
 
     return time, route
